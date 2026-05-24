@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="6dp"
+    app:cardElevation="2dp"
+    app:cardCornerRadius="6dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvIndex"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="#1"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="?attr/colorPrimary" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="20260101-000000"
+                android:textSize="11sp"
+                android:textColor="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/tvPayload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Payload"
+                android:textSize="13sp"
+                android:ellipsize="end"
+                android:maxLines="2" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvMsgStatus"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="✓ 成功"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:gravity="end" />
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
