@@ -146,13 +146,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startAndBindService() {
-        val intent = Intent(this, MqttPublishService::class.java)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForegroundService(intent)
-        } else {
-            startService(intent)
+        try {
+            val intent = Intent(this, MqttPublishService::class.java)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                startForegroundService(intent)
+            } else {
+                startService(intent)
+            }
+            bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
+        } catch (e: Exception) {
+            // startForegroundService 在部分设备上可能因权限问题失败
+            e.printStackTrace()
         }
-        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
     }
 
     private fun updateStatusUI() {
