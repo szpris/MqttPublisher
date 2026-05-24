@@ -36,12 +36,6 @@
             android:exported="false"
             android:foregroundServiceType="dataSync" />
 
-        <!-- Paho MQTT Android Service -->
-        <service
-            android:name="org.eclipse.paho.android.service.MqttService"
-            android:enabled="true"
-            android:exported="false" />
-
     </application>
 
 </manifest>

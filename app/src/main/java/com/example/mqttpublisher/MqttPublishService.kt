@@ -213,7 +213,11 @@ class MqttPublishService : Service() {
     // ==================== 广播 ====================
 
     private fun broadcastStatus() {
-        sendBroadcast(Intent(ACTION_STATUS_UPDATE))
+        val intent = Intent(ACTION_STATUS_UPDATE)
+        if (Build.VERSION.SDK_INT >= 34) {
+            intent.flags = Intent.FLAG_RECEIVER_NOT_EXPORTED
+        }
+        sendBroadcast(intent)
     }
 
     private fun broadcastMessage(msg: String, time: String, count: Int, success: Boolean) {
@@ -222,6 +226,9 @@ class MqttPublishService : Service() {
             putExtra(EXTRA_TIME, time)
             putExtra(EXTRA_COUNT, count)
             putExtra(EXTRA_SUCCESS, success)
+        }
+        if (Build.VERSION.SDK_INT >= 34) {
+            intent.flags = Intent.FLAG_RECEIVER_NOT_EXPORTED
         }
         sendBroadcast(intent)
     }

@@ -9,6 +9,8 @@ import android.content.ServiceConnection
 import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
+import android.content.pm.PackageManager
+import android.Manifest
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -88,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             mqttService?.clearMessages()
         }
 
-        startAndBindService()
+        requestNotificationPermission()
     }
 
     override fun onStart() {
@@ -99,7 +101,7 @@ class MainActivity : AppCompatActivity() {
             addAction(MqttPublishService.ACTION_MESSAGE_PUBLISHED)
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            registerReceiver(statusReceiver, filter, RECEIVER_EXPORTED)
+            registerReceiver(statusReceiver, filter, RECEIVER_NOT_EXPORTED)
         } else {
             registerReceiver(statusReceiver, filter)
         }
@@ -115,6 +117,31 @@ class MainActivity : AppCompatActivity() {
         if (isBound) {
             unbindService(serviceConnection)
             isBound = false
+        }
+    }
+
+    private fun requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(
+                    arrayOf(Manifest.permission.POST_NOTIFICATIONS), 1001)
+            } else {
+                startAndBindService()
+            }
+        } else {
+            startAndBindService()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 1001) {
+            startAndBindService()
         }
     }
 

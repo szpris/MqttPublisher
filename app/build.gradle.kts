@@ -43,5 +43,4 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.lifecycle.service)
     implementation(libs.paho.mqtt.client)
-    implementation(libs.paho.mqtt.android)
 }

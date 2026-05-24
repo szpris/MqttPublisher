@@ -9,15 +9,15 @@ class AppPrefs(context: Context) {
         context.getSharedPreferences("mqtt_prefs", Context.MODE_PRIVATE)
 
     var host: String
-        get() = prefs.getString("host", "xy.nasi.cn") ?: "xy.nasi.cn"
+        get() = prefs.getString("host", "") ?: ""
         set(value) = prefs.edit().putString("host", value).apply()
 
     var port: Int
-        get() = prefs.getInt("port", 51882)
+        get() = prefs.getInt("port", 1883)
         set(value) = prefs.edit().putInt("port", value).apply()
 
     var topic: String
-        get() = prefs.getString("topic", "SM09aZ09aZ/TestHost/info") ?: "SM09aZ09aZ/TestHost/info"
+        get() = prefs.getString("topic", "") ?: ""
         set(value) = prefs.edit().putString("topic", value).apply()
 
     var interval: Long

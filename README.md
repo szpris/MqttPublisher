@@ -12,9 +12,9 @@
 
 | 参数 | 默认值 |
 |------|--------|
-| 服务器 | xy.nasi.cn |
-| 端口 | 51882 |
-| Topic | SM09aZ09aZ/TestHost/info |
+| 服务器 | （首次使用请在设置中配置） |
+| 端口 | 1883 |
+| Topic | （首次使用请在设置中配置） |
 | Payload 格式 | `YYYYMMDD-HHmmss_N`（N=发送次数）|
 | ClientID 格式 | `设备型号_YYYYMMDD-HHmmss` |
 | 间隔 | 5 秒 |
@@ -31,10 +31,9 @@
 ## 依赖库
 
 - `org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5`
-- `org.eclipse.paho:org.eclipse.paho.android.service:1.1.1`
 - Material Components, AndroidX
 
 ## 注意事项
 
 - Android 13+ 需要允许通知权限（首次运行时系统会弹窗询问）
-- 确保设备网络可以访问 xy.nasi.cn:51882
+- 首次使用请在设置中配置 MQTT 服务器地址、端口和 Topic

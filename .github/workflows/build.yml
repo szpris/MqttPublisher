@@ -112,9 +112,9 @@ jobs:
             **版本**: ${{ steps.version.outputs.version_name }} (Build ${{ github.run_number }})
             **提交**: ${{ github.sha }}
             
-            ### 默认配置
-            - 服务器: xy.nasi.cn:51882
-            - Topic: SM09aZ09aZ/TestHost/info
+            ### 功能
+            - MQTT 定时消息发布
+            - 服务器/端口/Topic 可在设置中配置
             - Payload: YYYYMMDD-HHmmss_N
             
             ### 安装说明
